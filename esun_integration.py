@@ -1,12 +1,18 @@
+import asyncio
 from configparser import ConfigParser
-from fugle_trade.sdk import SDK
 
-class FugleIntegration:
+class EsunIntegration:
     def __init__(self, config_file):
         config = ConfigParser()
         config.read(config_file)
-        self.sdk = SDK(config)
-        self.sdk.login()
+        try:
+            from esun_trade.sdk import SDK
+            self.sdk = SDK(config)
+            self.sdk.login()
+        except ImportError:
+            from fugle_trade.sdk import SDK
+            self.sdk = SDK(config)
+            self.sdk.login()
 
     def login(self):
         self.sdk.login()
@@ -58,9 +64,9 @@ class FugleIntegration:
             else:
                 inv_msg = inv_msg + "\n"
 
-            total_msg = f"總支出：{total_cost_sum}\n"
-            total_msg = total_msg + f"總市值：{total_value_now}\n"
-            total_msg = total_msg + f"未實現損益：{total_value_now - total_cost_sum}\n"
-            total_msg = total_msg + f"損益比：{(total_value_now/total_cost_sum)-1:.2%}"
+        total_msg = f"總支出：{total_cost_sum}\n"
+        total_msg = total_msg + f"總市值：{total_value_now}\n"
+        total_msg = total_msg + f"未實現損益：{total_value_now - total_cost_sum}\n"
+        total_msg = total_msg + f"損益比：{(total_value_now/total_cost_sum)-1:.2%}"
 
         return f"\n{total_msg}\n=====\n{inv_msg}"

@@ -1,16 +1,16 @@
 PYTHON_KEYRING_BACKEND=keyrings.cryptfile.cryptfile.CryptFileKeyring
 
+LOG_LEVEL="INFO" # or "DEBUG"
+
 DISCORD_TOKEN=""
 CLIENT_ID=""
 ACTIVE_CHANNELS=""
 AUTO_TRADING_CHANNEL=""
 
-FUGLE_CONFIG_INI="./fugle_config/config.ini"
-TAVILY_SEARCH_API="tvly-"
-OPENAI_API_KEY="sk-proj-"
+GOOGLE_GENAI_API_KEY=""
+GOOGLE_SEARCH_API=""
 
-OLLAMA_ADDR="http://127.0.0.1:11434"
-OLLAMA_MODEL="llama3.1:latest"
+ESUN_CONFIG_INI=""
 
 SYSTEM_PROMPT="
 你叫 ArkBot 是一位擁有豐富股票投資經驗的專家，能夠提供全面且細膩的投資建議。

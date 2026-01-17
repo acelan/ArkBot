@@ -20,6 +20,11 @@ logger = logging.getLogger('ArkBot')
 log_level = logging.DEBUG if os.getenv('LOG_LEVEL') == "DEBUG" else logging.INFO
 logging.basicConfig(level=log_level, format=log_format, datefmt=log_datefmt)
 
+# Suppress verbose logging from third-party libraries
+logging.getLogger('yfinance').setLevel(logging.WARNING)
+logging.getLogger('peewee').setLevel(logging.WARNING)
+logging.getLogger('urllib3').setLevel(logging.WARNING)
+
 client = ArkBot(intents=intents)
 client.active_channels = active_channels
 
